@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../src/index.css';
 import Navbar from '../src/Components/Navbar';
 import TodoForm from '../src/Components/TodoForm.js';
@@ -43,6 +43,30 @@ function App() {
     setCompletedTasks([]);
     setUncompletedTasks([]);
   };
+
+  useEffect(() => {
+    // Load task data from localStorage on component mount
+    const savedUncompletedTasks = JSON.parse(
+      localStorage.getItem('uncompletedTasks')
+    );
+    const savedCompletedTasks = JSON.parse(
+      localStorage.getItem('completedTasks')
+    );
+
+    if (savedUncompletedTasks) {
+      setUncompletedTasks(savedUncompletedTasks);
+    }
+
+    if (savedCompletedTasks) {
+      setCompletedTasks(savedCompletedTasks);
+    }
+  }, []); // Run this effect only once on component mount
+
+  useEffect(() => {
+    // Save task data to localStorage whenever tasks change
+    localStorage.setItem('uncompletedTasks', JSON.stringify(uncompletedTasks));
+    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+  }, [uncompletedTasks, completedTasks]);
 
   return (
     <div>
