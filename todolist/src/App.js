@@ -39,9 +39,14 @@ function App() {
     }
   };
 
+  const resetList = () => {
+    setCompletedTasks([]);
+    setUncompletedTasks([]);
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar resetList={resetList} />
       <TodoForm addTask={addTask} />
       <div className="card_item">
         {uncompletedTasks.map((task) => (

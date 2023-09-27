@@ -17,7 +17,18 @@ body {
   font-family: cursive;
   font-weight: 700;
 }
-
+.Reset {
+  display: flex;
+  justify-content: right;
+  margin-right: 10px;
+  align-items: center;
+}
+.Reset button {
+  margin: 2px;
+  font-size: 20px;
+  border-radius: 2px;
+  background-color: lightcoral;
+}
 .input_div {
   padding: 10px;
   display: flex;
